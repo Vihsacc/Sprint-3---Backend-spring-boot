@@ -12,27 +12,27 @@ public class Alerta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O título do alerta é obrigatório")
+    @NotBlank(message = "O titulo e obrigatorio")
     @Column(nullable = false, length = 150)
     private String titulo;
 
-    @NotBlank(message = "A descrição é obrigatória")
+    @NotBlank(message = "A descricao e obrigatoria")
     @Column(nullable = false, length = 500)
     private String descricao;
 
-    @NotBlank(message = "O nível de severidade é obrigatório")
+    @NotBlank(message = "A severidade e obrigatoria")
     @Column(nullable = false, length = 20)
     private String severidade; // BAIXA, MEDIA, ALTA, CRITICA
 
-    @NotBlank(message = "A origem é obrigatória")
+    @NotBlank(message = "A origem e obrigatoria")
     @Column(nullable = false, length = 150)
     private String origem;
 
-    @NotBlank(message = "A localização é obrigatória")
+    @NotBlank(message = "A localizacao e obrigatoria")
     @Column(nullable = false, length = 150)
     private String localizacao;
 
-    @NotBlank(message = "O tipo do alerta é obrigatório")
+    @NotBlank(message = "O tipo e obrigatorio")
     @Column(nullable = false, length = 50)
     private String tipo; // TEMPERATURA, PRESSAO, VIBRACAO, UMIDADE, FALHA_MECANICA
 
@@ -55,7 +55,6 @@ public class Alerta {
         }
     }
 
-    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

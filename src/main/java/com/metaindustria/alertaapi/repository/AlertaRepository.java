@@ -11,5 +11,4 @@ public interface AlertaRepository extends JpaRepository<Alerta, Long> {
     List<Alerta> findByStatus(String status);
     List<Alerta> findBySeveridade(String severidade);
     List<Alerta> findByTipo(String tipo);
-    List<Alerta> findByOrigem(String origem);
 }

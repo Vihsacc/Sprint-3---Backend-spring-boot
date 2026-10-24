@@ -18,19 +18,16 @@ public class AlertaController {
     @Autowired
     private AlertaService alertaService;
 
-    // POST /alertas
     @PostMapping
     public ResponseEntity<Alerta> criar(@Valid @RequestBody Alerta alerta) {
         return ResponseEntity.status(HttpStatus.CREATED).body(alertaService.criar(alerta));
     }
 
-    // GET /alertas
     @GetMapping
     public ResponseEntity<List<Alerta>> listarTodos() {
         return ResponseEntity.ok(alertaService.listarTodos());
     }
 
-    // GET /alertas/{id}
     @GetMapping("/{id}")
     public ResponseEntity<Alerta> buscarPorId(@PathVariable Long id) {
         return alertaService.buscarPorId(id)
@@ -38,16 +35,13 @@ public class AlertaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // PUT /alertas/{id}
     @PutMapping("/{id}")
-    public ResponseEntity<Alerta> atualizar(@PathVariable Long id,
-                                            @Valid @RequestBody Alerta alerta) {
+    public ResponseEntity<Alerta> atualizar(@PathVariable Long id, @Valid @RequestBody Alerta alerta) {
         return alertaService.atualizar(id, alerta)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE /alertas/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         return alertaService.deletar(id)
@@ -55,19 +49,16 @@ public class AlertaController {
                 : ResponseEntity.notFound().build();
     }
 
-    // GET /alertas/status/{status}
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Alerta>> listarPorStatus(@PathVariable String status) {
         return ResponseEntity.ok(alertaService.listarPorStatus(status));
     }
 
-    // GET /alertas/severidade/{severidade}
     @GetMapping("/severidade/{severidade}")
     public ResponseEntity<List<Alerta>> listarPorSeveridade(@PathVariable String severidade) {
         return ResponseEntity.ok(alertaService.listarPorSeveridade(severidade));
     }
 
-    // GET /alertas/tipo/{tipo}
     @GetMapping("/tipo/{tipo}")
     public ResponseEntity<List<Alerta>> listarPorTipo(@PathVariable String tipo) {
         return ResponseEntity.ok(alertaService.listarPorTipo(tipo));

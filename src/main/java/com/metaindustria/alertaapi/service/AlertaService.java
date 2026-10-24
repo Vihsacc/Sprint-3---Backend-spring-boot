@@ -16,6 +16,7 @@ public class AlertaService {
     private AlertaRepository alertaRepository;
 
     public Alerta criar(Alerta alerta) {
+        alerta.setId(null); // garante INSERT, nunca sobrescreve um registro existente
         return alertaRepository.save(alerta);
     }
 
@@ -27,17 +28,19 @@ public class AlertaService {
         return alertaRepository.findById(id);
     }
 
-    public Optional<Alerta> atualizar(Long id, Alerta dadosAtualizados) {
+    public Optional<Alerta> atualizar(Long id, Alerta dados) {
         return alertaRepository.findById(id).map(existente -> {
-            existente.setTitulo(dadosAtualizados.getTitulo());
-            existente.setDescricao(dadosAtualizados.getDescricao());
-            existente.setSeveridade(dadosAtualizados.getSeveridade());
-            existente.setOrigem(dadosAtualizados.getOrigem());
-            existente.setLocalizacao(dadosAtualizados.getLocalizacao());
-            existente.setTipo(dadosAtualizados.getTipo());
-            existente.setStatus(dadosAtualizados.getStatus());
-            existente.setAcaoTomada(dadosAtualizados.getAcaoTomada());
-            if ("RESOLVIDO".equalsIgnoreCase(dadosAtualizados.getStatus())
+            existente.setTitulo(dados.getTitulo());
+            existente.setDescricao(dados.getDescricao());
+            existente.setSeveridade(dados.getSeveridade());
+            existente.setOrigem(dados.getOrigem());
+            existente.setLocalizacao(dados.getLocalizacao());
+            existente.setTipo(dados.getTipo());
+            if (dados.getStatus() != null && !dados.getStatus().isBlank()) {
+                existente.setStatus(dados.getStatus());
+            }
+            existente.setAcaoTomada(dados.getAcaoTomada());
+            if ("RESOLVIDO".equalsIgnoreCase(existente.getStatus())
                     && existente.getDataResolucao() == null) {
                 existente.setDataResolucao(LocalDateTime.now());
             }
