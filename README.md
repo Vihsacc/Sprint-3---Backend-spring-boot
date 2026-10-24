@@ -8,9 +8,7 @@ Backend da **Metaindústria** (FIAP, Sprint 4 - entrega final). API REST para re
 |------|----|
 | Vitor Saccardo | 555611 |
 
-## Vídeo de demonstração (YouTube, não listado)
 
-[COLE AQUI O LINK DO VÍDEO]
 
 ## Repositórios
 
